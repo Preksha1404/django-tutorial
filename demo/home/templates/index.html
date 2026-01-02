@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Server</title>
-</head>
-<body>
+{%extends "base.html" %}
+{%  block start %}
     <h1>Welcome to the Home Page!</h1>
+    <ul>
+        {% for item in peoples %}
+            <li>{{ item.name }} - {{ item.age }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/contact/">Go to Contact Page</a>
+    <a href="/about/">Go to About Page</a>
     <a href="/success/">Go to Success Page</a>
-</body>
-</html>
+{% endblock %}
