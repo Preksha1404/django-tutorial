@@ -18,11 +18,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import *
+from vegetables.views import *
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", home, name="home"),
+    path("recipes/", recipes, name="recipes"),
+    path("delete_recipe/<int:recipe_id>/", delete_recipe, name="delete_recipe"),
+    path("edit_recipe/<int:recipe_id>/", edit_recipe, name="edit_recipe"),
     path("about/", about, name="about"),
     path("contact/", contact, name="contact"),
     path("success/", success_page, name="success"),
     path("admin/", admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
+
+urlpatterns += staticfiles_urlpatterns()
